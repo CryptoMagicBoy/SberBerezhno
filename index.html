@@ -243,13 +243,11 @@ input[type=range]{flex:1;accent-color:var(--lime);height:26px}
 .s7{grid-template-columns:1fr 620px;align-items:center}
 .final{display:flex;flex-direction:column;gap:30px}
 .final .display{font-size:64px;line-height:1.08}
-.faq{display:flex;flex-direction:column;gap:10px}
-.faq details{border-radius:16px;background:var(--ink2);border:1px solid var(--line);padding:0 20px}
-.faq summary{list-style:none;cursor:pointer;padding:16px 0;font-size:18px;font-weight:800;display:flex;justify-content:space-between;gap:12px}
-.faq summary::-webkit-details-marker{display:none}
-.faq summary::after{content:"+";font-family:var(--disp);color:var(--lime)}
-.faq details[open] summary::after{content:"−"}
-.faq details p{font-size:17px;color:var(--soft);line-height:1.45;padding:0 0 16px}
+.teamcard{padding:36px 38px;display:flex;flex-direction:column;gap:14px}
+.tname{font-family:var(--disp);font-size:40px;font-weight:700;letter-spacing:-.02em}
+.members{list-style:none;margin:8px 0 0;padding:0;display:flex;flex-direction:column}
+.members li{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:14px 0;border-top:1px solid var(--line);font-size:22px}
+.members li span{font-size:15px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--lime)}
 
 /* overlays */
 .scrim{position:absolute;inset:0;background:rgba(5,8,7,.6);opacity:0;visibility:hidden;transition:opacity .3s,visibility 0s .3s;z-index:20}
@@ -291,15 +289,6 @@ input[type=range]{flex:1;accent-color:var(--lime);height:26px}
 .stream{display:grid;grid-template-columns:50px 1fr;gap:10px;padding:12px 0;border-top:1px solid var(--line)}
 .stream .num{font-size:20px;color:var(--lime)} .stream b{font-size:18px} .stream p{font-size:15px;color:var(--muted)}
 
-.notes{position:absolute;left:80px;right:80px;bottom:86px;background:rgba(16,23,20,.97);border:1px solid var(--line2);border-radius:22px;padding:22px 28px;z-index:15;display:grid;grid-template-columns:150px 1fr;gap:28px;opacity:0;visibility:hidden;transform:translateY(16px);transition:opacity .3s,transform .3s,visibility 0s .3s;max-height:360px}
-.notes.on{opacity:1;visibility:visible;transform:none;transition:opacity .3s,transform .3s}
-.timer{display:flex;flex-direction:column;gap:6px}
-.timer .num{font-size:34px;color:var(--lime)}
-.timer p{font-size:14px;color:var(--muted)}
-.timer button{font-size:14px;color:var(--muted);text-decoration:underline;text-align:left}
-.ntext{overflow:auto;display:flex;flex-direction:column;gap:10px}
-.ntext p{font-size:19px;line-height:1.5;color:var(--dim)} .ntext p.cur{color:var(--text)}
-.ntext .tt{font-size:14px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--lime)}
 
 .proto{position:absolute;inset:40px;z-index:30;background:#0B100E;border:1px solid var(--line2);border-radius:22px;display:flex;flex-direction:column;overflow:hidden;opacity:0;visibility:hidden;transition:opacity .3s,visibility 0s .3s}
 .proto.on{opacity:1;visibility:visible;transition:opacity .3s}
@@ -315,7 +304,7 @@ input[type=range]{flex:1;accent-color:var(--lime);height:26px}
 /* phone: stacked, scrollable */
 body.phone{overflow:auto;padding-inline:16px;padding-block:0}
 .phone .stage{position:relative;width:560px;height:auto;overflow:visible;margin:0 auto;background:var(--ink)}
-.phone .topbar,.phone .dock,.phone .notes{display:none}
+.phone .topbar,.phone .dock{display:none}
 .phone .screen{position:relative;inset:auto;opacity:1;visibility:visible;transform:none;padding:44px 0 40px;border-top:1px solid var(--line);height:auto}
 .phone .screen:first-of-type{border-top:0}
 .phone .cols,.phone .cover{grid-template-columns:1fr!important;grid-template-rows:auto!important}
@@ -360,7 +349,7 @@ body.phone{overflow:auto;padding-inline:16px;padding-block:0}
   <section class="screen" data-block="0" data-steps="0">
     <div class="cover">
       <div class="cover-l">
-        <p class="eyebrow"><span class="dot"></span>Команда [название] · AI × e-commerce × финансы</p>
+        <p class="eyebrow"><span class="dot"></span>Команда «Сила мыслей» · AI × e-commerce × финансы</p>
         <h1 class="display">СберБережно<br><span class="lime">360°</span></h1>
         <p class="lead">AI-слой, который уменьшает чек, а не корзину, и превращает сэкономленное в накопления.</p>
         <p class="hook">Сколько вы сэкономили на покупках в прошлом месяце? <b>И где сейчас эти деньги?</b></p>
@@ -391,7 +380,7 @@ body.phone{overflow:auto;padding-inline:16px;padding-block:0}
   </section>
 
   <!-- S1 TASK & GOAL -->
-  <section class="screen" data-block="1" data-steps="0" data-drawers="team:Команда">
+  <section class="screen" data-block="1" data-steps="0">
     <header class="sh"><p class="eyebrow">01 · Задача и цель</p><h2 class="h2">Меньше тратить, больше копить</h2></header>
     <div class="cols s1">
       <div class="card task">
@@ -399,7 +388,7 @@ body.phone{overflow:auto;padding-inline:16px;padding-block:0}
         <p class="task-text">Собрать разрозненные механики экономии в один AI-сценарий внутри экосистемы Сбера — от решения о покупке до накопления. <em>Бесплатно для клиента.</em></p>
         <p class="label">Для кого</p>
         <div class="chips"><span class="chip">Клиенты СБОЛ</span><span class="chip">Покупатели Купера и Самоката</span><span class="chip">Партнёры-ритейлеры</span></div>
-        <div class="team"><p class="label">Команда</p><p><b>[Название команды]</b> · [Имя — продукт] · [Имя — AI и данные] · [Имя — разработка] · [Имя — бизнес]</p></div>
+        <div class="team"><p class="label">Команда «Сила мыслей»</p><p><b>Гета Я. Р.</b> — лидер команды · Батискина А. С. · Рузич Е. А. · Чигишева Е. А. · Быков И. А.</p></div>
       </div>
       <div class="goal">
         <p class="label">Цель пилота · Новосибирск · 12 месяцев</p>
@@ -421,7 +410,7 @@ body.phone{overflow:auto;padding-inline:16px;padding-block:0}
     <header class="sh"><p class="eyebrow">02 · Доказательство проблемы</p><h2 class="h2">Выгода есть, но она разбросана и теряется</h2></header>
     <div class="cols s2">
       <div class="ev">
-        <div class="stat key"><span class="num">[__]%</span><p>целевой аудитории не готовы платить подписку за экономию</p><span class="src">Опрос ЦА команды, n = [__]</span></div>
+        <div class="stat key"><span class="num">90%</span><p>опрошенных не готовы платить подписку за сервис экономии</p><span class="src">Опрос в Опроссо: 28 из 31 ответивших, всего 40 респондентов</span></div>
         <div class="stat"><span class="num">1,90 трлн ₽</span><p>eGrocery в 2026 году: оборот +25%, 1,2 млрд заказов</p><span class="src">Data Insight, 2026</span></div>
         <div class="stat"><span class="num">84,7 млн</span><p>активных пользователей СберБанк Онлайн — канал уже есть</p><span class="src">Сбер, март 2026</span></div>
       </div>
@@ -522,9 +511,8 @@ body.phone{overflow:auto;padding-inline:16px;padding-block:0}
         </div>
         <div class="card checks">
           <p class="label">Результаты проверки</p>
-          <div class="ck"><i></i><span>Опрос ЦА: [__]% против подписки</span></div>
+          <div class="ck"><i></i><span>Опрос 40 человек: 28 из 31 против подписки</span></div>
           <div class="ck"><i></i><span>Прототип: сценарий работает целиком</span></div>
-          <div class="ck"><i></i><span>Тест прототипа: n = [__], [__]% приняли замены</span></div>
           <div class="ck todo"><i></i><span>Пилот: A/B-тест, в зачёт — только прирост</span></div>
         </div>
       </div>
@@ -550,15 +538,25 @@ body.phone{overflow:auto;padding-inline:16px;padding-block:0}
   </section>
 
   <!-- S7 FINAL -->
-  <section class="screen" data-block="6" data-steps="0" data-drawers="qa:Вопросы жюри|risks:Риски">
+  <section class="screen" data-block="6" data-steps="0" data-drawers="risks:Риски и как снижаем">
     <header class="sh"><p class="eyebrow">Итог</p></header>
     <div class="cols s7">
       <div class="final">
         <h2 class="display">Меньше тратить сегодня.<br><span class="lime">Больше сохранять завтра.</span></h2>
         <div class="chips"><span class="chip solid">Прототип готов</span><span class="chip">MVP за 8 недель</span><span class="chip">Окупаемость при 70–100 тыс. MAU</span></div>
-        <p class="hook">Спасибо! <b>[Название команды]</b> · [контакты]</p>
+        <p class="hook">Спасибо! Будем рады вопросам.</p>
       </div>
-      <div class="faq" id="faqFinal"></div>
+      <div class="card teamcard">
+        <p class="label lime">Команда</p>
+        <p class="tname">«Сила мыслей»</p>
+        <ul class="members">
+          <li><b>Гета Я. Р.</b><span>лидер команды</span></li>
+          <li><b>Батискина А. С.</b></li>
+          <li><b>Рузич Е. А.</b></li>
+          <li><b>Чигишева Е. А.</b></li>
+          <li><b>Быков И. А.</b></li>
+        </ul>
+      </div>
     </div>
   </section>
 
@@ -567,17 +565,10 @@ body.phone{overflow:auto;padding-inline:16px;padding-block:0}
     <div class="stepdots" id="stepdots"></div>
     <button class="ctl" id="prev" aria-label="Назад">←</button>
     <button class="ctl pri" id="next" aria-label="Дальше">Дальше →</button>
-    <button class="ctl" id="qaBtn">Вопросы жюри</button>
-    <button class="ctl" id="notesBtn" aria-pressed="false">Текст</button>
     <button class="ctl" id="fsBtn" aria-label="Во весь экран">⛶</button>
   </div>
 
-  <div class="notes" id="notes" aria-live="polite">
-    <div class="timer"><span class="num" id="tm">0:00</span><p>из 5:00 · цель к этому экрану <b id="tgt">0:20</b></p><button id="tmReset">Сбросить таймер</button></div>
-    <div class="ntext" id="ntext"></div>
-  </div>
-
-  <div class="scrim" id="scrim"></div>
+<div class="scrim" id="scrim"></div>
   <aside class="drawer" id="drawer" aria-hidden="true">
     <div class="dhead"><h3 id="dtitle"></h3><button class="ctl" id="dclose">Закрыть ✕</button></div>
     <div class="dbody" id="dbody"></div>
@@ -590,19 +581,10 @@ body.phone{overflow:auto;padding-inline:16px;padding-block:0}
 <div id="tip"></div>
 
 <!-- drawer templates -->
-<template id="t-team">
-  <p style="color:var(--soft)">Роли в команде проекта. Заполните перед защитой.</p>
-  <div class="tiles">
-    <div class="tile"><b>[Имя Фамилия]</b><p>Продукт и питч</p></div>
-    <div class="tile"><b>[Имя Фамилия]</b><p>AI и данные</p></div>
-    <div class="tile"><b>[Имя Фамилия]</b><p>Разработка прототипа</p></div>
-    <div class="tile"><b>[Имя Фамилия]</b><p>Бизнес-модель и финансы</p></div>
-  </div>
-</template>
 
 <template id="t-research">
   <div class="tiles">
-    <div class="tile"><span class="num">[__]%</span><p>ЦА не готова платить подписку за сервис экономии → сервис бесплатный</p><span class="src">Опрос ЦА команды, n = [__]</span></div>
+    <div class="tile"><span class="num">90%</span><p>не готовы платить подписку за сервис экономии → сервис бесплатный для клиента</p><span class="src">Опрос в Опроссо: 28 из 31 ответивших, 40 респондентов</span></div>
     <div class="tile"><span class="num">+25%</span><p>рост оборота eGrocery в 2026: до 1,90 трлн ₽ и 1,2 млрд заказов</p><span class="src">Data Insight, eGrocery 2026</span></div>
     <div class="tile"><span class="num">1 552 ₽</span><p>средний чек eGrocery — экономию можно измерить в каждом заказе</p><span class="src">Data Insight, прогноз 2026</span></div>
     <div class="tile"><span class="num">84,7 млн</span><p>MAU СберБанк Онлайн — канал запуска без затрат на привлечение</p><span class="src">Сбер, март 2026</span></div>
@@ -727,7 +709,6 @@ body.phone{overflow:auto;padding-inline:16px;padding-block:0}
   <div class="rk"><b>Регуляторный риск</b><p>Накопления и смена услуг — только в рамках действующих лицензированных продуктов и согласий.</p></div>
 </template>
 
-<template id="t-qa"><div class="faq" data-faq></div></template>
 
 <script>
 (function(){
@@ -737,24 +718,6 @@ const RM=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').match
 let cur=0, step=0, phone=false;
 
 /* ---------- content ---------- */
-const NOTES=[
- ["Добрый день! Мы — команда [название]. Вопрос в зал: сколько вы сэкономили на покупках в прошлом месяце? И где сейчас эти деньги? Обычно ответа нет ни на первый вопрос, ни на второй. СберБережно 360 делает так, чтобы он был на оба."],
- ["Наша задача — собрать разрозненные механики экономии в один AI-сценарий внутри экосистемы Сбера: от решения о покупке до накопления. И бесплатно для клиента. Цель пилота в Новосибирске на 12 месяцев: 30–50 тысяч активированных пользователей, от 200 рублей подтверждённой экономии в месяц на каждого и не меньше 20% тех, кто переводит часть экономии в цель. Внизу — воронка пилота в реальном масштабе."],
- ["Выгоды вокруг клиента много: скидки, кэшбэк, бонусы, промокоды, тарифы. Но она разбросана по десятку мест, и собирать её клиент должен сам.",
-  "Пройдём по клиентскому пути: выгода теряется на каждом этапе. Покупка на пике цены, ручное сравнение корзины, не самая выгодная оплата — а сэкономленное тут же растворяется в новых тратах.",
-  "Слева — доказательства. Наш опрос: [__]% не готовы платить подписку за экономию. Рынок eGrocery в 2026 году — 1,9 триллиона рублей, плюс 25%. У СберБанк Онлайн 84,7 миллиона пользователей — канал уже есть. Не хватает связки. Это зелёная линия."],
- ["Наше решение — AI-слой внутри СберБанк Онлайн, Купера и Самоката. Он ведёт клиента по всему кругу. До покупки радар цены подсказывает, когда купить, а Fresh Rescue находит выгодные наборы рядом.",
-  "В корзине — равноценные замены с учётом бренда, состава и бюджета. Любимое не трогаем, каждую замену подтверждает клиент.",
-  "При оплате — самая выгодная комбинация SberPay, СберСпасибо и акций партнёра.",
-  "После покупки считаем, сколько безопасно отложить до зарплаты, а партнёр может добавить бонус прямо в цель.",
-  "Между покупками AI находит тариф дешевле при тех же условиях. Главное отличие: Smart buyer отвечает, где дешевле. Мы — ещё на три вопроса: когда покупать, кто доплатит и куда деть выгоду. Такой связки нет ни у одного из семи аналогов."],
- ["Вот живая корзина из прототипа — 1 085 рублей. AI предлагает три равноценные замены, любимый кофе не трогает, а ставит на радар цены. Клиент подтверждает — минус 75. Умная оплата — ещё минус 66. Итого минус 141 рубль, 13% чека. Половину клиент одним нажатием отправляет в цель, партнёр добавляет 20%. На двух таких заказах в неделю — около 8 700 рублей в год. [Можно выключить замену или открыть полный прототип.]"],
- ["Клиент не платит ничего. Зарабатываем на доказанном эффекте: партнёрские бюджеты, оборот SberPay, остатки на счетах и white-label API. Все расходы — 2,6 миллиона рублей в месяц. Окупаемость — при 70–100 тысячах активных пользователей: на каждого нужно 26–37 рублей дохода, а сам он экономит от 200. Клиент получает в 5–8 раз больше, чем зарабатывает Сбер. Справа — пороги успеха пилота и что уже проверено."],
- ["План — 18 месяцев. MVP за 8 недель, затем A/B-пилот в Новосибирске, расширение на 3–5 партнёров и масштаб через API. Чтобы стартовать, нужны три решения: одна зона Купера, сценарий в СберБанк Онлайн и 1–2 партнёра для первых кампаний."],
- ["СберБережно 360: меньше тратить сегодня, больше сохранять завтра. Спасибо! Готовы ответить на вопросы."]
-];
-const TARGET=['0:20','0:50','1:45','2:35','3:25','4:15','4:45','5:00'];
-
 const STAGES=[
  {n:'01',name:'До покупки',mods:['Радар цены','Fresh Rescue'],desc:'Для несрочных покупок радар подсказывает: купить сейчас или подождать снижения. Fresh Rescue показывает наборы из излишков партнёров рядом — клиент платит меньше, партнёр снижает списания. 2ГИС нужен только для геолокации.',eff:'−19%',cap:'кофе на радаре: 429 → 349 ₽ · rescue-набор 399 ₽ вместо 699'},
  {n:'02',name:'Корзина',mods:['AI-оптимизация корзины'],desc:'Равноценные замены с учётом бренда, состава, СТМ и бюджета. Любимые товары не трогаем. Каждая замена объяснена, и её подтверждает клиент.',eff:'−75 ₽',cap:'3 замены в демо-корзине · совпадение 92%'},
@@ -770,14 +733,6 @@ const PHASES=[
  {name:'Масштаб',from:12,to:18,per:'12–18 мес.',what:'Крупные города РФ, API и white-label для внешних компаний.',res:'масштабная B2B2C-выручка',dep:'методика измерения эффекта, SLA, коммерческие пакеты'}
 ];
 
-const FAQ=[
- ['«Сбер уже ищет лучшую цену»','Да, и Smart buyer — наш входной сигнал. Мы начинаем после поиска цены: когда купить, что заменить, кто доплатит и сколько безопасно отложить.'],
- ['«Кэшбэк уже везде»','Кэшбэк подталкивает к следующей трате. Boost идёт прямо в цель клиента и включается только после его действия.'],
- ['«Округление уже есть»','Округление увеличивает списание. Мы копим часть уже подтверждённой экономии — клиент не тратит больше, чем планировал.'],
- ['«Скидки на товары со сроком бывают»','Fresh Rescue делает из них управляемый локальный канал: геолокация, персонализация и измерение снижения списаний у партнёра.'],
- ['«Как вы считаете экономию?»','Только фактическую разницу с исходным сценарием покупки. Кэшбэк, требующий незапланированной покупки, не считаем. Для регулярных расходов — только подтверждённое снижение платежа при тех же условиях.'],
- ['«Почему партнёр будет платить?»','Он платит не за охват, а за инкрементальный результат: контрольная группа отделяет органическую покупку от вызванной предложением. Так работает Upside в США.']
-];
 
 /* ---------- helpers ---------- */
 const fmt=n=>Math.round(n).toLocaleString('ru-RU');
@@ -983,9 +938,6 @@ function renderPhase(i){phaseSel=i;const p=PHASES[i];
  const t2=document.createElement('p');t2.className='t';t2.textContent=p.dep;
  d.append(h,w,l1,l2,t1,t2);}
 
-/* ---------- FAQ ---------- */
-function fillFaq(box){FAQ.forEach(q=>{const d=document.createElement('details');const s=document.createElement('summary');s.textContent=q[0];const p=document.createElement('p');p.textContent=q[1];d.append(s,p);box.appendChild(d);});}
-fillFaq($('#faqFinal'));
 
 /* ---------- navigation ---------- */
 function stepsOf(i){return +screens[i].dataset.steps||0}
@@ -995,7 +947,6 @@ function applyStep(){
  s.querySelectorAll('[data-until]').forEach(n=>n.classList.toggle('off',!phone&&step>=+n.dataset.until));
  if(cur===3)renderStage(Math.min(step,4));
  const dots=$('#stepdots');dots.innerHTML='';const n=stepsOf(cur);if(n>0)for(let k=0;k<=n;k++){const i=document.createElement('i');if(k<=step)i.className='on';dots.appendChild(i)}
- renderNotes();
 }
 function setStep(k){step=Math.max(0,Math.min(stepsOf(cur),k));applyStep();}
 function go(i,s){i=Math.max(0,Math.min(screens.length-1,i));
@@ -1008,7 +959,7 @@ function go(i,s){i=Math.max(0,Math.min(screens.length-1,i));
  try{history.replaceState(null,'','#s'+i)}catch(e){}
  applyStep();
 }
-function next(){if(!started)startTimer();if(step<stepsOf(cur))setStep(step+1);else if(cur<screens.length-1)go(cur+1);else go(0);}
+function next(){if(step<stepsOf(cur))setStep(step+1);else if(cur<screens.length-1)go(cur+1);else go(0);}
 function prev(){if(step>0)setStep(step-1);else if(cur>0)go(cur-1,'end');}
 $('#next').addEventListener('click',next);$('#prev').addEventListener('click',prev);
 $$('.blk').forEach(b=>b.addEventListener('click',()=>go(+b.dataset.go)));
@@ -1017,11 +968,9 @@ $$('.blk').forEach(b=>b.addEventListener('click',()=>go(+b.dataset.go)));
 const drawer=$('#drawer'),scrim=$('#scrim');
 function openDrawer(id,title){const tpl=document.getElementById('t-'+id);if(!tpl)return;
  $('#dtitle').textContent=title;const body=$('#dbody');body.innerHTML='';body.appendChild(tpl.content.cloneNode(true));
- body.querySelectorAll('[data-faq]').forEach(fillFaq);
  drawer.classList.toggle('wide',id==='compare');drawer.classList.add('on');scrim.classList.add('on');drawer.setAttribute('aria-hidden','false');$('#dclose').focus();}
 function closeDrawer(){drawer.classList.remove('on');scrim.classList.remove('on');drawer.setAttribute('aria-hidden','true');}
 $('#dclose').addEventListener('click',closeDrawer);scrim.addEventListener('click',closeDrawer);
-$('#qaBtn').addEventListener('click',()=>openDrawer('qa','Вопросы жюри'));
 /* phone: inline drawer buttons */
 screens.forEach(s=>{const list=(s.dataset.drawers||'').split('|').filter(Boolean);if(!list.length)return;const w=document.createElement('div');w.className='more-inline';list.forEach(x=>{const [id,t]=x.split(':');const bt=document.createElement('button');bt.className='mbtn';bt.textContent='+ '+t;bt.addEventListener('click',()=>openDrawer(id,t));w.appendChild(bt)});s.appendChild(w);});
 
@@ -1030,15 +979,6 @@ const proto=$('#proto');
 $('#openProto').addEventListener('click',()=>{const f=$('#protoFrame');if(!f.getAttribute('src'))f.setAttribute('src','prototype.html');proto.classList.add('on');});
 $('#protoClose').addEventListener('click',()=>proto.classList.remove('on'));
 
-/* ---------- notes + timer ---------- */
-let started=false,t0=0,timerId=null;
-function startTimer(){started=true;t0=Date.now();clearInterval(timerId);timerId=setInterval(tick,500);tick();}
-function tick(){const s=started?Math.floor((Date.now()-t0)/1000):0;$('#tm').textContent=Math.floor(s/60)+':'+String(s%60).padStart(2,'0');}
-$('#tmReset').addEventListener('click',()=>{started=false;clearInterval(timerId);tick();});
-function renderNotes(){const box=$('#ntext');box.innerHTML='';const tt=document.createElement('p');tt.className='tt';tt.textContent='Текст выступления · экран '+(cur+1);box.appendChild(tt);
- NOTES[cur].forEach((x,k)=>{const p=document.createElement('p');p.textContent=x;if(k===Math.min(step,NOTES[cur].length-1))p.className='cur';box.appendChild(p)});
- $('#tgt').textContent=TARGET[cur];}
-$('#notesBtn').addEventListener('click',e=>{const on=$('#notes').classList.toggle('on');e.currentTarget.setAttribute('aria-pressed',on);});
 $('#fsBtn').addEventListener('click',()=>{const d=document.documentElement;try{(document.fullscreenElement?document.exitFullscreen():d.requestFullscreen()).catch(()=>{})}catch(e){}});
 
 /* ---------- keys ---------- */
@@ -1050,9 +990,7 @@ document.addEventListener('keydown',e=>{
  if(['ArrowRight','PageDown',' '].includes(e.key)){e.preventDefault();next()}
  else if(['ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();prev()}
  else if(e.key==='Home')go(0);else if(e.key==='End')go(screens.length-1);
- else if(e.key==='n'||e.key==='т'||e.key==='N')$('#notesBtn').click();
  else if(e.key==='f'||e.key==='а')$('#fsBtn').click();
- else if(e.key==='q'||e.key==='й')$('#qaBtn').click();
 });
 
 /* ---------- fit ---------- */
