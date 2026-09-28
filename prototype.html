@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>СберБережно AI — интерактивный продуктовый прототип</title>
+<style>
+:root{
+  --bg:#f5f6f7;--surface:#fff;--surface2:#f8f9fa;--text:#141719;--muted:#6f767d;--line:#e7e9eb;
+  --lime:#d9ff38;--lime-strong:#bff000;--green:#1f9d62;--green-dark:#11633f;--black:#141719;
+  --orange:#ff7a2f;--red:#e84646;--shadow:0 16px 48px rgba(20,23,25,.08);--radius:26px;
+}
+*{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+button,input,select{font:inherit} button{cursor:pointer}.app{max-width:1440px;margin:0 auto;padding:18px 22px 48px}
+.header{height:74px;display:flex;align-items:center;gap:18px;position:sticky;top:0;z-index:30;background:rgba(245,246,247,.88);backdrop-filter:blur(18px);border-bottom:1px solid rgba(231,233,235,.8)}
+.brand{display:flex;align-items:center;gap:11px;min-width:max-content;font-weight:900;font-size:21px;letter-spacing:-.04em}.brandmark{width:38px;height:38px;border-radius:13px;background:var(--lime);display:grid;place-items:center;font-weight:1000}.demo{font-size:10px;letter-spacing:.08em;background:#141719;color:#fff;border-radius:999px;padding:5px 8px}
+.location{display:flex;align-items:center;gap:10px;margin-left:auto;background:#fff;border:1px solid var(--line);border-radius:16px;padding:8px 12px;min-width:330px}.location-icon{width:34px;height:34px;border-radius:11px;background:#f0f1f2;display:grid;place-items:center}.location-text{min-width:0;flex:1}.location-text b,.location-text small{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.location-text b{font-size:13px}.location-text small{font-size:11px;color:var(--muted);margin-top:2px}.ghost{border:0;background:transparent;font-weight:800;font-size:12px}.cart-pill{border:0;background:var(--black);color:#fff;padding:12px 16px;border-radius:15px;font-weight:900}
+.hero{margin-top:24px;background:linear-gradient(120deg,#151918 0%,#1e2823 56%,#334529 100%);color:#fff;border-radius:34px;padding:34px;display:grid;grid-template-columns:1.2fr .8fr;gap:24px;overflow:hidden;position:relative;min-height:320px}.hero:after{content:"";position:absolute;width:460px;height:460px;border-radius:50%;background:radial-gradient(circle,var(--lime) 0%,rgba(217,255,56,.12) 45%,transparent 68%);right:-180px;top:-200px;opacity:.85}.eyebrow{display:flex;align-items:center;gap:8px;color:#dbe4df;font-size:12px;font-weight:800;letter-spacing:.03em;text-transform:uppercase}.dot{width:8px;height:8px;border-radius:50%;background:var(--lime)}h1{font-size:51px;line-height:1.01;letter-spacing:-.065em;margin:14px 0 15px;max-width:760px}.hero p{color:#c7d0cb;max-width:720px;line-height:1.55;font-size:16px;margin:0}.hero-actions{display:flex;gap:10px;margin-top:25px;flex-wrap:wrap}.btn{border:0;border-radius:15px;padding:13px 17px;font-weight:900;transition:.18s}.btn:hover{transform:translateY(-1px)}.btn-lime{background:var(--lime);color:#121512}.btn-white{background:#fff;color:#141719}.btn-soft{background:#f0f2f2;color:#191c1e}.btn-outline{background:transparent;border:1px solid var(--line);color:var(--text)}
+.hero-side{position:relative;z-index:2;display:grid;align-content:center}.hero-widget{background:#fff;color:#151719;border-radius:24px;padding:20px;box-shadow:0 28px 80px rgba(0,0,0,.25)}.hw-top{display:flex;justify-content:space-between;align-items:center}.ai-badge{padding:7px 10px;border-radius:999px;background:#edf9f2;color:var(--green-dark);font-size:11px;font-weight:900}.hero-widget strong.big{display:block;font-size:42px;letter-spacing:-.06em;margin-top:14px}.hero-widget .caption{font-size:12px;color:var(--muted);line-height:1.5}.mini-bars{display:grid;gap:8px;margin-top:17px}.mini-bar{display:grid;grid-template-columns:90px 1fr auto;gap:9px;align-items:center;font-size:11px}.track{height:7px;background:#eef0f0;border-radius:999px;overflow:hidden}.fill{height:100%;background:var(--lime-strong);border-radius:inherit}
+.layout{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(390px,.85fr);gap:18px;margin-top:18px}.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}.panel{padding:24px}.panel-head{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;margin-bottom:18px}.panel h2{font-size:23px;letter-spacing:-.035em;margin:0}.subtle{font-size:12px;color:var(--muted);margin-top:5px;line-height:1.45}.settings{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}.setting{background:var(--surface2);border:1px solid var(--line);border-radius:17px;padding:13px}.setting label{display:flex;justify-content:space-between;align-items:center;font-size:12px;font-weight:850;margin-bottom:8px}.setting select,.setting input[type=number]{width:100%;border:1px solid var(--line);background:#fff;border-radius:12px;padding:10px 11px}.switchrow{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:8px 0}.toggle{appearance:none;width:42px;height:24px;background:#dfe2e3;border-radius:999px;position:relative;transition:.2s}.toggle:after{content:"";position:absolute;width:18px;height:18px;border-radius:50%;top:3px;left:3px;background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.18);transition:.2s}.toggle:checked{background:var(--black)}.toggle:checked:after{left:21px}.cart{display:grid;gap:9px}.item{display:grid;grid-template-columns:54px minmax(0,1fr) auto auto;gap:13px;align-items:center;border:1px solid var(--line);border-radius:19px;padding:12px;background:#fff}.pic{width:52px;height:52px;border-radius:16px;background:#f4f5f5;display:grid;place-items:center;font-size:24px}.item-name{font-weight:900;font-size:14px}.item-desc{font-size:11px;color:var(--muted);margin-top:3px}.fav{display:inline-block;margin-left:6px;font-size:10px;background:#fff1e9;color:#a84410;padding:3px 6px;border-radius:999px}.qty{display:flex;align-items:center;background:#f3f4f4;border-radius:12px;padding:3px}.qty button{width:28px;height:28px;border:0;background:transparent;font-weight:900}.qty b{min-width:24px;text-align:center;font-size:13px}.price{text-align:right;min-width:84px}.price b{display:block}.price small{color:var(--muted);font-size:10px}.summary{display:flex;justify-content:space-between;align-items:flex-end;border-top:1px solid var(--line);margin-top:17px;padding-top:17px}.summary strong{font-size:32px;letter-spacing:-.045em}.actionrow{display:flex;gap:9px;flex-wrap:wrap;margin-top:16px}.primary-wide{flex:1;background:var(--black);color:#fff;border:0;padding:15px 18px;border-radius:16px;font-weight:950}.primary-wide span{color:var(--lime)}
+.stack{display:grid;gap:18px}.geo-card{padding:20px;background:linear-gradient(135deg,#fff,#f7f8f8)}.geo-head{display:flex;justify-content:space-between;align-items:center}.geo-brand{font-size:11px;font-weight:900;color:#4c5358}.geo-map{height:122px;border-radius:18px;margin-top:13px;background:linear-gradient(135deg,#ebefef,#f8f9f9);position:relative;overflow:hidden;border:1px solid var(--line)}.road{position:absolute;height:10px;background:#fff;border:1px solid #e8eaea;border-radius:999px;transform:rotate(-18deg)}.r1{width:300px;left:-40px;top:48px}.r2{width:260px;right:-50px;top:75px;transform:rotate(24deg)}.pin{position:absolute;left:48%;top:45%;width:34px;height:34px;border-radius:50% 50% 50% 8px;transform:rotate(-45deg);background:var(--lime-strong);box-shadow:0 8px 18px rgba(0,0,0,.12)}.pin:after{content:"";position:absolute;width:10px;height:10px;border-radius:50%;background:#fff;left:12px;top:12px}.geo-caption{display:flex;justify-content:space-between;gap:12px;margin-top:12px;font-size:11px;color:var(--muted)}
+.ai-panel{padding:22px}.ai-empty{padding:28px 18px;border-radius:19px;background:#f7f8f8;border:1px dashed #d8dcde;text-align:center;color:var(--muted);font-size:13px;line-height:1.5}.reco{border:1px solid var(--line);border-radius:18px;padding:14px;margin-top:10px}.reco-top{display:grid;grid-template-columns:1fr auto;gap:10px}.reco-title{font-weight:900;font-size:13px}.reco-save{font-weight:950;color:var(--green-dark);font-size:13px}.reco-text{font-size:11px;color:var(--muted);line-height:1.45;margin-top:5px}.chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}.chip{font-size:9px;font-weight:850;padding:5px 7px;border-radius:999px;background:#f0f2f2}.chip.safe{background:#edf9f2;color:#11633f}.reco-foot{display:flex;align-items:center;justify-content:space-between;margin-top:11px}.accept{display:flex;align-items:center;gap:7px;font-size:11px;font-weight:800}.accept input{accent-color:#141719}.trust{font-size:10px;color:var(--muted)}.optimized{display:none;margin-top:14px;background:#f6f8f7;border-radius:18px;padding:15px}.optimized .row{display:flex;justify-content:space-between;align-items:center;margin:6px 0}.optimized .saved{color:var(--green-dark);font-weight:950}.opt-actions{display:flex;gap:8px;margin-top:12px}.opt-actions button{flex:1}
+.savings-card{padding:22px}.money{font-size:44px;font-weight:950;letter-spacing:-.055em;margin:7px 0}.range{width:100%;accent-color:#151918}.split{display:flex;justify-content:space-between;font-size:10px;color:var(--muted)}.account{margin-top:15px;background:#111615;color:#fff;border-radius:19px;padding:16px}.account small{color:#aab4af}.account-row{display:flex;justify-content:space-between;align-items:end;margin-top:8px}.account b{font-size:24px}.account button{background:var(--lime);border:0;border-radius:12px;padding:10px 12px;font-weight:950}.projection{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}.proj{background:#f5f7f6;border-radius:14px;padding:10px}.proj b{display:block;font-size:15px}.proj small{font-size:9px;color:var(--muted)}
+.bottom-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px}.how{padding:24px}.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-top:17px}.step{background:#f7f8f8;border-radius:17px;padding:14px}.step-num{width:26px;height:26px;border-radius:9px;background:var(--lime);display:grid;place-items:center;font-weight:950;font-size:11px}.step b{display:block;font-size:12px;margin:10px 0 4px}.step p{font-size:10px;line-height:1.4;color:var(--muted);margin:0}.history{padding:24px}.history-list{display:grid;gap:8px;margin-top:14px}.history-row{display:grid;grid-template-columns:1fr auto;gap:10px;padding:10px 0;border-bottom:1px solid var(--line)}.history-row:last-child{border:0}.history-row b{font-size:12px}.history-row small{display:block;color:var(--muted);font-size:10px;margin-top:2px}.history-row span{font-weight:950;color:var(--green-dark);font-size:12px}.toast{position:fixed;right:24px;bottom:24px;background:#151918;color:#fff;padding:14px 17px;border-radius:14px;font-weight:850;box-shadow:0 18px 50px rgba(0,0,0,.24);transform:translateY(110px);opacity:0;transition:.25s;z-index:50}.toast.show{transform:none;opacity:1}.disclaimer{text-align:center;color:#8b9297;font-size:10px;padding:24px}
+.modal{position:fixed;inset:0;background:rgba(20,23,25,.45);display:none;place-items:center;z-index:80;padding:18px}.modal.open{display:grid}.modal-card{width:min(560px,100%);background:#fff;border-radius:26px;padding:22px;box-shadow:0 30px 100px rgba(0,0,0,.25)}.modal-card h3{margin:0 0 6px;font-size:22px}.address-list{display:grid;gap:8px;margin-top:14px}.addr{border:1px solid var(--line);border-radius:16px;padding:13px;text-align:left;background:#fff}.addr:hover{border-color:#bcc1c4}.addr b{display:block;font-size:13px}.addr small{color:var(--muted)}
+
+/* Economy 360 */
+.economy360{margin-top:18px}.economy-head{display:flex;justify-content:space-between;gap:18px;align-items:end;margin-bottom:14px}.economy-head h2{margin:0;font-size:28px;letter-spacing:-.045em}.economy-head p{margin:6px 0 0;color:var(--muted);font-size:12px;max-width:760px;line-height:1.55}.economy-badge{font-size:10px;font-weight:950;background:#151918;color:#fff;border-radius:999px;padding:8px 11px;white-space:nowrap}.feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.feature{padding:18px;min-height:220px;display:flex;flex-direction:column;position:relative;overflow:hidden}.feature:after{content:"";position:absolute;width:120px;height:120px;border-radius:50%;background:radial-gradient(circle,rgba(217,255,56,.22),transparent 65%);right:-25px;top:-32px}.feature-icon{width:42px;height:42px;border-radius:14px;background:#f2f4f3;display:grid;place-items:center;font-size:20px;position:relative;z-index:1}.feature h3{margin:13px 0 7px;font-size:17px;letter-spacing:-.025em}.feature p{margin:0;color:var(--muted);font-size:11px;line-height:1.5}.feature .origin{display:inline-flex;align-items:center;gap:5px;margin-top:10px;color:#7a8388;font-size:9px;font-weight:850}.feature .metric{margin-top:auto;padding-top:14px;display:flex;justify-content:space-between;gap:10px;align-items:end}.feature .metric b{font-size:19px;letter-spacing:-.035em}.feature .metric small{display:block;color:var(--muted);font-size:9px;margin-top:2px}.feature button{border:0;background:#151918;color:#fff;border-radius:12px;padding:9px 11px;font-weight:900;font-size:10px;position:relative;z-index:2}.feature button.alt{background:var(--lime);color:#111}.feature-state{margin-top:10px;background:#f6f8f7;border-radius:12px;padding:10px;font-size:10px;color:#4e575c;line-height:1.45;display:none}.feature.active .feature-state{display:block}.monetization{margin-top:18px;padding:24px}.monetization h2{margin:0;font-size:24px;letter-spacing:-.035em}.money-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:15px}.money-source{background:#f7f8f8;border-radius:17px;padding:14px;border:1px solid var(--line)}.money-source b{font-size:12px}.money-source p{font-size:10px;color:var(--muted);line-height:1.45;margin:6px 0 0}.profit-pill{display:inline-block;margin-top:9px;background:#eaf7ef;color:#11633f;border-radius:999px;padding:5px 7px;font-size:9px;font-weight:900}.lab-strip{margin-top:12px;background:#111615;color:#fff;border-radius:20px;padding:18px;display:grid;grid-template-columns:1fr auto;gap:16px;align-items:center}.lab-strip b{font-size:15px}.lab-strip p{margin:5px 0 0;color:#c6d0cb;font-size:10px;line-height:1.45}.lab-strip strong{font-size:24px;color:var(--lime)}
+@media(max-width:1100px){.feature-grid{grid-template-columns:1fr 1fr}.money-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:680px){.feature-grid,.money-grid{grid-template-columns:1fr}.economy-head,.lab-strip{grid-template-columns:1fr;display:grid}.economy-badge{justify-self:start}}
+
+@media(max-width:1100px){.layout,.hero,.bottom-grid{grid-template-columns:1fr}.hero-side{max-width:560px}.steps{grid-template-columns:1fr 1fr}.header{position:static}.location{min-width:0}}
+@media(max-width:680px){.app{padding:10px}.header{height:auto;padding:10px 0;flex-wrap:wrap}.location{order:3;width:100%}.hero{padding:24px;border-radius:26px}h1{font-size:36px}.layout{grid-template-columns:1fr}.settings,.projection,.steps{grid-template-columns:1fr}.item{grid-template-columns:46px 1fr auto}.price{grid-column:3}.qty{grid-column:2;justify-self:start}.cart-pill{display:none}}
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="header">
+    <div class="brand"><div class="brandmark">С</div>СберБережно AI <span class="demo">DEMO</span></div>
+    <div class="location">
+      <div class="location-icon">📍</div>
+      <div class="location-text"><b id="addressTitle">Новосибирск, Красный проспект, 50</b><small id="zoneText">2ГИС определил геопозицию • зона доставки Купера</small></div>
+      <button class="ghost" id="locationBtn">Изменить</button>
+    </div>
+    <button class="cart-pill">Корзина · <span id="headerTotal">0 ₽</span></button>
+  </header>
+
+  <section class="hero">
+    <div>
+      <div class="eyebrow"><span class="dot"></span>Экономия внутри привычной покупки</div>
+      <h1>Уменьшаем чек, а не количество нужных товаров.</h1>
+      <p>AI помогает экономить на всём цикле покупки: оптимизирует корзину, отслеживает цену, подключает партнёрские бонусы, показывает rescue-предложения и предлагает безопасно сохранить часть результата. 2ГИС используется исключительно для геолокации и определения ближайшей зоны обслуживания.</p>
+      <div class="hero-actions"><button class="btn btn-lime" id="heroOptimize">Оптимизировать корзину</button><button class="btn btn-white" onclick="document.querySelector('#economy360').scrollIntoView()">Экономия 360°</button><button class="btn btn-white" onclick="document.querySelector('#how').scrollIntoView()">Как это работает</button></div>
+    </div>
+    <div class="hero-side">
+      <div class="hero-widget">
+        <div class="hw-top"><b>Потенциал корзины</b><span class="ai-badge">AI-анализ</span></div>
+        <strong class="big" id="potentialPct">—</strong>
+        <div class="caption">Максимальная потенциальная экономия при текущих настройках. Пользователь подтверждает каждую замену сам.</div>
+        <div class="mini-bars">
+          <div class="mini-bar"><span>Цена</span><div class="track"><div class="fill" style="width:88%"></div></div><b>приоритет</b></div>
+          <div class="mini-bar"><span>Качество</span><div class="track"><div class="fill" style="width:76%"></div></div><b>сохраняем</b></div>
+          <div class="mini-bar"><span>Привычки</span><div class="track"><div class="fill" style="width:64%"></div></div><b>учитываем</b></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main class="layout">
+    <section class="card panel">
+      <div class="panel-head"><div><h2>Корзина в Купере</h2><div class="subtle">Демонстрационный ассортимент и цены. Настройте правила перед запуском AI.</div></div><button class="btn btn-soft" id="randomBtn">Другой пример</button></div>
+      <div class="settings">
+        <div class="setting">
+          <label>Цель по бюджету <span id="budgetLabel">до 1 200 ₽</span></label>
+          <input type="range" id="budgetRange" min="800" max="1800" step="50" value="1200" style="width:100%;accent-color:#151918">
+          <div class="switchrow"><span style="font-size:11px">Разрешить товары СТМ</span><input class="toggle" id="privateLabel" type="checkbox" checked></div>
+        </div>
+        <div class="setting">
+          <label>Предпочтения <span>персональные</span></label>
+          <div class="switchrow"><span style="font-size:11px">Не менять любимые товары</span><input class="toggle" id="keepFav" type="checkbox" checked></div>
+          <div class="switchrow"><span style="font-size:11px">Только равный/лучший состав</span><input class="toggle" id="qualityOnly" type="checkbox" checked></div>
+        </div>
+      </div>
+      <div class="cart" id="cart"></div>
+      <div class="summary"><div><div class="subtle">Итого до оптимизации</div><strong id="cartTotal">0 ₽</strong></div><div style="text-align:right"><div class="subtle">Доставка</div><b>0 ₽</b></div></div>
+      <div class="actionrow"><button class="primary-wide" id="optimizeBtn">Найти экономию <span>с AI</span></button><button class="btn btn-outline" id="resetBtn">Сбросить</button></div>
+    </section>
+
+    <aside class="stack">
+      <section class="card geo-card">
+        <div class="geo-head"><div><b>Геолокация заказа</b><div class="subtle">Только адрес и ближайшая зона обслуживания</div></div><span class="geo-brand">2ГИС GEO</span></div>
+        <div class="geo-map"><div class="road r1"></div><div class="road r2"></div><div class="pin"></div></div>
+        <div class="geo-caption"><span id="nearestStore">Ближайшая зона Купера: 1,2 км</span><span>без доступа к ценам</span></div>
+      </section>
+
+      <section class="card ai-panel">
+        <div class="panel-head"><div><h2>Рекомендации AI</h2><div class="subtle">Выберите только подходящие замены</div></div><span class="ai-badge" id="aiStatus">готов к анализу</span></div>
+        <div id="suggestions"><div class="ai-empty">AI ещё не анализировал корзину. Он учтёт бюджет, любимые товары и разрешение на СТМ.</div></div>
+        <div class="optimized" id="optimizedBox">
+          <div class="row"><span>Новая стоимость</span><b id="newTotal">0 ₽</b></div>
+          <div class="row"><span>Подтверждённая экономия</span><span class="saved" id="savedAmount">0 ₽</span></div>
+          <div class="row"><span>Цель бюджета</span><b id="budgetState">—</b></div>
+          <div class="opt-actions"><button class="btn btn-soft" id="acceptAll">Принять безопасные</button><button class="btn btn-outline" id="rejectAll">Снять все</button></div>
+        </div>
+      </section>
+
+      <section class="card savings-card">
+        <div class="eyebrow" style="color:var(--green-dark)"><span class="dot" style="background:var(--green)"></span>Добровольное накопление</div>
+        <h2 style="margin-top:9px">Сохранить часть выгоды</h2>
+        <div class="money" id="saveTransfer">0 ₽</div>
+        <input class="range" id="saveRange" type="range" min="0" max="100" value="50" disabled>
+        <div class="split"><span>оставить на карте</span><span id="savePercent">50% в накопления</span></div>
+        <div class="account"><small>Накопительный счёт «СберБережно»</small><div class="account-row"><b id="accountBalance">12 450 ₽</b><button id="transferBtn" disabled>Перевести</button></div></div>
+        <div class="projection">
+          <div class="proj"><b id="weekProjection">0 ₽</b><small>за неделю*</small></div>
+          <div class="proj"><b id="monthProjection">0 ₽</b><small>за месяц*</small></div>
+          <div class="proj"><b id="yearProjection">0 ₽</b><small>за год*</small></div>
+        </div>
+        <div class="subtle">*Иллюстративный прогноз при 2 похожих заказах в неделю.</div>
+      </section>
+    </aside>
+  </main>
+
+
+  <section class="economy360" id="economy360">
+    <div class="economy-head">
+      <div><h2>Экономия 360°</h2><p>Не только дешевле собрать корзину. Система помогает выбрать момент покупки, использовать партнёрские деньги, спасти товары от списания, снизить регулярные расходы и безопасно сохранить результат.</p></div>
+      <span class="economy-badge">без отдельной подписки</span>
+    </div>
+    <div class="feature-grid">
+      <article class="card feature" id="priceRadarCard"><div class="feature-icon">📉</div><h3>Радар цены</h3><p>Для не срочных и регулярно покупаемых товаров AI отслеживает цену и предлагает купить тогда, когда она ниже вашей обычной цены.</p><span class="origin">↗ зарубежный ориентир: Honey Droplist</span><div class="feature-state" id="priceRadarState">Кофе 250 г добавлен в наблюдение. Демо-сценарий: обычная цена 429 ₽ → выгодная 349 ₽. Потенциал: 80 ₽.</div><div class="metric"><div><b>до −19%</b><small>демо на выбранном товаре</small></div><button onclick="runFeature('priceRadar')">Следить</button></div></article>
+      <article class="card feature" id="boostCard"><div class="feature-icon">🎯</div><h3>СберЦель Boost</h3><p>Партнёр может добавить бонус к подтверждённой экономии пользователя — не к чеку, а прямо в его финансовую цель.</p><span class="origin">↗ идея: merchant-funded reward → Acorns Earn</span><div class="feature-state" id="boostState">Партнёр добавит ещё 20% к сумме, которую вы решите сохранить. В демо при переводе 200 ₽ цель пополнится на 240 ₽.</div><div class="metric"><div><b>+20%</b><small>из маркетингового бюджета партнёра</small></div><button class="alt" onclick="runFeature('boost')">Подключить</button></div></article>
+      <article class="card feature" id="rescueCard"><div class="feature-icon">🥬</div><h3>Fresh Rescue</h3><p>Товары с близким сроком или излишки партнёра продаются дешевле. 2ГИС используется только чтобы найти ближайшую точку выдачи.</p><span class="origin">↗ ориентир: Too Good To Go / Flashfood</span><div class="feature-state" id="rescueState">Рядом: набор овощей 399 ₽ вместо 699 ₽ • 0,9 км; выпечка 149 ₽ вместо 299 ₽ • 1,3 км. Цены и наличие передаёт партнёр, 2ГИС — только гео.</div><div class="metric"><div><b>−300 ₽</b><small>пример rescue-набора</small></div><button onclick="runFeature('rescue')">Показать рядом</button></div></article>
+      <article class="card feature" id="billsCard"><div class="feature-icon">🧾</div><h3>AI по регулярным расходам</h3><p>Находит повторяющиеся платежи и по согласию пользователя показывает более дешёвые тарифы/пакеты без ухудшения выбранных условий.</p><span class="origin">↗ ориентир: Rocket Money Bill Negotiation</span><div class="feature-state" id="billsState">Демо: домашний интернет 890 ₽/мес. → партнёрский тариф 690 ₽/мес. Экономия 2 400 ₽/год. Переключение только после подтверждения.</div><div class="metric"><div><b>2 400 ₽/год</b><small>демо регулярной экономии</small></div><button onclick="runFeature('bills')">Проверить</button></div></article>
+      <article class="card feature" id="safeSaveCard"><div class="feature-icon">🛡️</div><h3>Безопасно отложить</h3><p>AI учитывает ближайшие обязательные платежи и показывает не «сколько можно забрать», а сколько комфортно сохранить без риска кассового разрыва.</p><span class="origin">↗ ориентир: Oportun Set & Save</span><div class="feature-state" id="safeSaveState">До зарплаты 8 дней. Обязательные платежи: 7 900 ₽. Защитный остаток: 10 000 ₽. Сегодня безопасно сохранить до 620 ₽.</div><div class="metric"><div><b>620 ₽</b><small>безопасный лимит в демо</small></div><button onclick="runFeature('safeSave')">Рассчитать</button></div></article>
+      <article class="card feature" id="smartPayCard"><div class="feature-icon">💳</div><h3>Умная оплата</h3><p>Перед оплатой система выбирает наиболее выгодную комбинацию внутри экосистемы: акция партнёра, СберСпасибо и SberPay — с объяснением выгоды.</p><span class="origin">↗ ориентир: Curve Smart Rules</span><div class="feature-state" id="smartPayState">Демо: оплатить через SberPay и списать 180 бонусов на позиции без повышенного начисления. Итоговая выгода по сценарию: 246 ₽.</div><div class="metric"><div><b>+66 ₽</b><small>доп. выгода к корзине в демо</small></div><button onclick="runFeature('smartPay')">Подобрать</button></div></article>
+    </div>
+    <section class="card monetization">
+      <h2>Как Сбер зарабатывает без подписки пользователя</h2>
+      <div class="money-grid">
+        <div class="money-source"><b>Партнёрские бюджеты</b><p>Комиссия за персональные merchant-funded предложения и за подтверждённую дополнительную продажу.</p><span class="profit-pill">B2B revenue</span></div>
+        <div class="money-source"><b>SberPay и эквайринг</b><p>Рост доли платежей внутри платёжного контура и оборота у партнёров.</p><span class="profit-pill">transaction revenue</span></div>
+        <div class="money-source"><b>Остатки и инвестиции</b><p>Часть реально сэкономленного добровольно остаётся на накопительных/инвестиционных продуктах.</p><span class="profit-pill">balances / AUM</span></div>
+        <div class="money-source"><b>White-label API</b><p>Крупные площадки могут покупать модуль оптимизации, радар цены и financial-goal механики как сервис.</p><span class="profit-pill">B2B2C SaaS</span></div>
+      </div>
+      <div class="lab-strip"><div><b>Главное отличие от обычного «поиска лучшей цены»</b><p>Smart buyer отвечает на вопрос «где дешевле?». СберБережно 360 отвечает ещё на три: «когда покупать?», «как получить дополнительную партнёрскую выгоду?» и «что сделать с уже сэкономленными деньгами?»</p></div><strong>4 источника дохода</strong></div>
+    </section>
+  </section>
+
+  <div class="bottom-grid">
+    <section class="card how" id="how">
+      <div class="panel-head"><div><h2>Как работает продукт</h2><div class="subtle">Роль каждого участника прозрачна</div></div></div>
+      <div class="steps">
+        <div class="step"><div class="step-num">1</div><b>2ГИС → гео</b><p>Определяет адрес и ближайшую доступную зону. Не участвует в ценах и товарных рекомендациях.</p></div>
+        <div class="step"><div class="step-num">2</div><b>Купер → каталог</b><p>Передаёт доступный ассортимент, цены и наличие для выбранной зоны доставки.</p></div>
+        <div class="step"><div class="step-num">3</div><b>AI → оптимизация</b><p>Ищет эквиваленты и соблюдает ограничения пользователя и партнёра.</p></div>
+        <div class="step"><div class="step-num">4</div><b>Сбер → накопление</b><p>После подтверждённой экономии предлагает добровольно сохранить её часть.</p></div>
+      </div>
+    </section>
+    <section class="card history">
+      <div class="panel-head"><div><h2>История выгоды</h2><div class="subtle">Накопление становится измеримым результатом</div></div><button class="btn btn-soft" id="clearHistory">Очистить</button></div>
+      <div class="history-list" id="historyList"></div>
+    </section>
+  </div>
+
+  <div class="disclaimer">Учебный интерактивный прототип. Названия партнёров используются для иллюстрации интеграционной модели. Данные, товары, цены и финансовые прогнозы демонстрационные.</div>
+</div>
+
+<div class="modal" id="locationModal">
+  <div class="modal-card">
+    <div class="panel-head"><div><h3>Геолокация через 2ГИС</h3><div class="subtle">В демо адрес выбирается вручную. В продукте используется геопозиция пользователя с его разрешения.</div></div><button class="ghost" id="closeModal">✕</button></div>
+    <div class="address-list" id="addressList"></div>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+const examples=[
+[
+{id:1,icon:'🥛',name:'Молоко 3,2%',desc:'950 мл',price:119,qty:1,fav:false,alt:{name:'Молоко 3,2% • СТМ',price:94,reason:'тот же объём и жирность',private:true,quality:'equal'}},
+{id:2,icon:'🍞',name:'Хлеб зерновой',desc:'350 г',price:109,qty:1,fav:false,alt:{name:'Хлеб цельнозерновой',price:89,reason:'схожий состав и вес',private:false,quality:'equal'}},
+{id:3,icon:'☕',name:'Кофе молотый',desc:'250 г • любимый бренд',price:429,qty:1,fav:true,alt:{name:'Кофе средняя обжарка',price:349,reason:'схожий профиль и объём',private:false,quality:'equal'}},
+{id:4,icon:'🍎',name:'Яблоки',desc:'1 кг',price:179,qty:1,fav:false,alt:null},
+{id:5,icon:'🧀',name:'Сыр полутвёрдый',desc:'200 г • 45%',price:249,qty:1,fav:false,alt:{name:'Сыр полутвёрдый 45%',price:219,reason:'тот же тип, масса и жирность',private:false,quality:'equal'}}
+],
+[
+{id:11,icon:'🥣',name:'Овсяные хлопья',desc:'500 г',price:159,qty:1,fav:false,alt:{name:'Овсяные хлопья • СТМ',price:129,reason:'тот же вес и состав',private:true,quality:'equal'}},
+{id:12,icon:'🍗',name:'Филе куриное',desc:'700 г',price:429,qty:1,fav:true,alt:{name:'Филе куриное охлаждённое',price:379,reason:'сопоставимый вес и категория',private:false,quality:'equal'}},
+{id:13,icon:'🍌',name:'Бананы',desc:'1 кг',price:169,qty:1,fav:false,alt:null},
+{id:14,icon:'🧃',name:'Сок апельсиновый',desc:'1 л',price:179,qty:2,fav:false,alt:{name:'Сок апельсиновый • СТМ',price:149,reason:'100% сок, тот же объём',private:true,quality:'equal'}},
+{id:15,icon:'🍫',name:'Шоколад молочный',desc:'90 г',price:139,qty:1,fav:false,alt:{name:'Шоколад молочный',price:109,reason:'сопоставимый состав и вес',private:false,quality:'equal'}}
+],
+[
+{id:21,icon:'🥚',name:'Яйца С0',desc:'10 шт.',price:149,qty:1,fav:false,alt:{name:'Яйца С0 • СТМ',price:129,reason:'та же категория и количество',private:true,quality:'equal'}},
+{id:22,icon:'🍝',name:'Макароны',desc:'450 г',price:129,qty:2,fav:false,alt:{name:'Макароны из твёрдых сортов',price:99,reason:'состав не хуже, сопоставимый вес',private:false,quality:'better'}},
+{id:23,icon:'🥩',name:'Фарш домашний',desc:'400 г • любимый',price:329,qty:1,fav:true,alt:{name:'Фарш мясной',price:289,reason:'сопоставимый состав',private:false,quality:'equal'}},
+{id:24,icon:'🥒',name:'Огурцы',desc:'600 г',price:189,qty:1,fav:false,alt:null},
+{id:25,icon:'🧈',name:'Масло сливочное',desc:'180 г • 82,5%',price:249,qty:1,fav:false,alt:{name:'Масло сливочное 82,5%',price:219,reason:'та же жирность и вес',private:false,quality:'equal'}}
+]
+];
+const addresses=[
+{title:'Новосибирск, Красный проспект, 50',zone:'Зона доставки Купера • Центральный район',nearest:'Ближайшая зона Купера: 1,2 км'},
+{title:'Новосибирск, ул. Ленина, 12',zone:'Зона доставки Купера • Железнодорожный район',nearest:'Ближайшая зона Купера: 0,8 км'},
+{title:'Новосибирск, ул. Кирова, 44',zone:'Зона доставки Купера • Октябрьский район',nearest:'Ближайшая зона Купера: 1,6 км'}
+];
+let products=structuredClone(examples[0]), accepted={}, currentSavings=0, balance=12450, history=[{title:'Заказ продуктов',date:'Сегодня, 09:14',sum:148},{title:'Бытовые товары',date:'23 сентября',sum:96},{title:'Продукты на неделю',date:'20 сентября',sum:214}];
+const $=id=>document.getElementById(id), money=n=>new Intl.NumberFormat('ru-RU').format(Math.round(n))+' ₽';
+function total(){return products.reduce((s,p)=>s+p.price*p.qty,0)}
+function eligible(p){if(!p.alt)return false;if($('keepFav').checked&&p.fav)return false;if(!$('privateLabel').checked&&p.alt.private)return false;if($('qualityOnly').checked&&!['equal','better'].includes(p.alt.quality))return false;return true}
+function renderCart(){const c=$('cart');c.innerHTML='';products.forEach(p=>{const el=document.createElement('div');el.className='item';el.innerHTML=`<div class="pic">${p.icon}</div><div><div class="item-name">${p.name}${p.fav?'<span class="fav">любимый</span>':''}</div><div class="item-desc">${p.desc}</div></div><div class="qty"><button onclick="qty(${p.id},-1)">−</button><b>${p.qty}</b><button onclick="qty(${p.id},1)">+</button></div><div class="price"><b>${money(p.price*p.qty)}</b><small>${money(p.price)} / шт.</small></div>`;c.appendChild(el)});$('cartTotal').textContent=money(total());$('headerTotal').textContent=money(total());resetAnalysis();updatePotential()}
+function qty(id,d){const p=products.find(x=>x.id===id);p.qty=Math.max(1,p.qty+d);renderCart()}
+function updatePotential(){const s=products.reduce((a,p)=>a+(eligible(p)?Math.max(0,p.price-p.alt.price)*p.qty:0),0);$('potentialPct').textContent=(s/total()*100||0).toLocaleString('ru-RU',{maximumFractionDigits:1})+'%';}
+function resetAnalysis(){accepted={};currentSavings=0;$('suggestions').innerHTML='<div class="ai-empty">AI ещё не анализировал корзину. Он учтёт бюджет, любимые товары и разрешение на СТМ.</div>';$('optimizedBox').style.display='none';$('aiStatus').textContent='готов к анализу';$('saveRange').disabled=true;$('transferBtn').disabled=true;updateSave()}
+function analyze(){const list=products.filter(eligible);$('aiStatus').textContent='анализирует…';$('suggestions').innerHTML='<div class="ai-empty">Сравниваем доступные эквиваленты, состав и ваши ограничения…</div>';setTimeout(()=>{accepted={};const wrap=$('suggestions');wrap.innerHTML='';if(!list.length){wrap.innerHTML='<div class="ai-empty">При текущих ограничениях безопасных замен не найдено. Попробуйте разрешить СТМ или изменение любимых товаров.</div>';return}list.forEach(p=>{accepted[p.id]=true;const save=(p.price-p.alt.price)*p.qty;const el=document.createElement('div');el.className='reco';el.innerHTML=`<div class="reco-top"><div><div class="reco-title">${p.name} → ${p.alt.name}</div><div class="reco-text">${p.alt.reason}</div><div class="chips"><span class="chip safe">безопасная замена</span>${p.alt.private?'<span class="chip">СТМ</span>':''}<span class="chip">в наличии</span></div></div><div class="reco-save">−${money(save)}</div></div><div class="reco-foot"><label class="accept"><input type="checkbox" checked onchange="toggleAlt(${p.id},this.checked)"> Принять</label><span class="trust">совпадение ${p.alt.quality==='better'?'96':'92'}%</span></div>`;wrap.appendChild(el)});$('aiStatus').textContent='готово';$('optimizedBox').style.display='block';$('saveRange').disabled=false;$('transferBtn').disabled=false;recalc();toast('AI подготовил безопасные варианты замены.');},520)}
+function toggleAlt(id,v){accepted[id]=v;recalc()}
+function recalc(){currentSavings=products.reduce((s,p)=>s+(p.alt&&accepted[p.id]?(p.price-p.alt.price)*p.qty:0),0);const nt=total()-currentSavings;$('savedAmount').textContent=money(currentSavings);$('newTotal').textContent=money(nt);const budget=+$('budgetRange').value;$('budgetState').textContent=nt<=budget?'цель достигнута':'ещё '+money(nt-budget);$('budgetState').style.color=nt<=budget?'var(--green-dark)':'var(--orange)';updateSave()}
+function updateSave(){const pct=+$('saveRange').value,v=currentSavings*pct/100;$('savePercent').textContent=pct+'% в накопления';$('saveTransfer').textContent=money(v);$('weekProjection').textContent=money(v*2);$('monthProjection').textContent=money(v*8);$('yearProjection').textContent=money(v*104)}
+function transfer(){const v=currentSavings*(+$('saveRange').value)/100;if(v<=0)return toast('Выберите хотя бы одну замену и долю накопления.');balance+=v;$('accountBalance').textContent=money(balance);history.unshift({title:'Экономия с AI',date:'Только что',sum:Math.round(v)});renderHistory();toast(money(v)+' переведено на накопительный счёт.')}
+function renderHistory(){const h=$('historyList');h.innerHTML='';history.slice(0,6).forEach(x=>{const r=document.createElement('div');r.className='history-row';r.innerHTML=`<div><b>${x.title}</b><small>${x.date}</small></div><span>+${money(x.sum)}</span>`;h.appendChild(r)});if(!history.length)h.innerHTML='<div class="ai-empty">История пуста.</div>'}
+function randomize(){let i=Math.floor(Math.random()*examples.length);products=structuredClone(examples[i]);renderCart();toast('Загружен другой пример корзины.')}
+function openLocation(){const list=$('addressList');list.innerHTML='';addresses.forEach((a,i)=>{const b=document.createElement('button');b.className='addr';b.innerHTML=`<b>${a.title}</b><small>${a.zone}</small>`;b.onclick=()=>selectAddress(i);list.appendChild(b)});$('locationModal').classList.add('open')}
+function selectAddress(i){const a=addresses[i];$('addressTitle').textContent=a.title;$('zoneText').textContent='2ГИС определил геопозицию • '+a.zone;$('nearestStore').textContent=a.nearest;$('locationModal').classList.remove('open');toast('2ГИС обновил геопозицию. Ассортимент привязан к новой зоне.')}
+function toast(t){const el=$('toast');el.textContent=t;el.classList.add('show');setTimeout(()=>el.classList.remove('show'),2600)}
+
+function runFeature(type){
+  const map={priceRadar:['priceRadarCard','Товар добавлен в радар цены.'],boost:['boostCard','СберЦель Boost подключён к демо-сценарию.'],rescue:['rescueCard','Найдены rescue-предложения рядом с выбранной геопозицией.'],bills:['billsCard','Найдена демонстрационная возможность снизить регулярный платёж.'],safeSave:['safeSaveCard','Рассчитан безопасный лимит добровольного накопления.'],smartPay:['smartPayCard','Подобрана более выгодная комбинация оплаты.']};
+  const [id,msg]=map[type];document.getElementById(id)?.classList.toggle('active');toast(msg);
+}
+
+$('optimizeBtn').onclick=analyze;$('heroOptimize').onclick=()=>{document.querySelector('.layout').scrollIntoView({behavior:'smooth'});setTimeout(analyze,350)};$('resetBtn').onclick=()=>{products=structuredClone(examples[0]);renderCart()};$('randomBtn').onclick=randomize;$('saveRange').oninput=updateSave;$('transferBtn').onclick=transfer;$('locationBtn').onclick=openLocation;$('closeModal').onclick=()=>$('locationModal').classList.remove('open');$('locationModal').onclick=e=>{if(e.target===$('locationModal'))$('locationModal').classList.remove('open')};$('privateLabel').onchange=()=>{resetAnalysis();updatePotential()};$('keepFav').onchange=()=>{resetAnalysis();updatePotential()};$('qualityOnly').onchange=()=>{resetAnalysis();updatePotential()};$('budgetRange').oninput=e=>{$('budgetLabel').textContent='до '+money(+e.target.value);if($('optimizedBox').style.display==='block')recalc()};$('acceptAll').onclick=()=>{products.filter(eligible).forEach(p=>accepted[p.id]=true);document.querySelectorAll('.accept input').forEach(x=>x.checked=true);recalc()};$('rejectAll').onclick=()=>{Object.keys(accepted).forEach(k=>accepted[k]=false);document.querySelectorAll('.accept input').forEach(x=>x.checked=false);recalc()};$('clearHistory').onclick=()=>{history=[];renderHistory()};
+renderCart();renderHistory();$('budgetLabel').textContent='до '+money(+$('budgetRange').value);
+</script>
+</body>
+</html>
