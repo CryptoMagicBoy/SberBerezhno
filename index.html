@@ -87,6 +87,16 @@ a{color:var(--lime)}
 .lead{font-size:28px;line-height:1.35;color:var(--soft);max-width:740px}
 .hook{font-size:21px;color:var(--muted);border-left:3px solid var(--lime);padding:4px 0 4px 18px;max-width:700px}
 .hook b{color:var(--text)}
+.cover-r{display:flex;flex-direction:column;align-items:center;gap:16px}
+.cover-r>svg{width:auto;height:456px}
+.qr{display:grid;grid-template-columns:168px 1fr;gap:22px;align-items:center;width:560px;padding:14px 26px 14px 14px;text-decoration:none;color:var(--text);transition:border-color .2s}
+.qr:hover{border-color:var(--lime3)}
+.qr svg{width:168px;height:168px;display:block;border-radius:14px}
+.qr-t{display:flex;flex-direction:column;gap:8px}
+.qr-t b{font-family:var(--disp);font-size:26px;font-weight:600;line-height:1.15}
+.qr-t p:not(.label){font-size:17px;color:var(--soft);line-height:1.35}
+.qr-t span{font-size:14px;color:var(--dim)}
+.phone .qr{display:none}
 .ring-spin{transform-origin:280px 260px;animation:spin 60s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 
@@ -262,8 +272,9 @@ input[type=range]{flex:1;accent-color:var(--lime);height:26px}
 .tile{border-radius:18px;background:var(--ink3);padding:18px 20px;display:flex;flex-direction:column;gap:6px}
 .tile .num{font-size:32px;color:var(--lime)}
 .tile p{font-size:16px;line-height:1.4}
-.seg{display:grid;grid-template-columns:44px 1fr;gap:14px;border-radius:18px;background:var(--ink3);padding:16px 18px}
+.seg{display:grid;grid-template-columns:64px 1fr;gap:14px;border-radius:18px;background:var(--ink3);padding:16px 18px}
 .seg .num{font-size:26px;color:var(--lime)}
+.seg .num.sm{font-size:17px;padding-top:4px}
 .seg b{font-size:18px}
 .seg p{font-size:16px;color:var(--soft);line-height:1.4}
 .seg .pain{color:#FFB595}
@@ -408,6 +419,10 @@ body.phone{overflow:auto;padding-inline:16px;padding-block:0}
             <text x="280" y="326" fill="#A3AEA8" font-size="17" text-anchor="middle">в прототипе</text>
           </g>
         </svg>
+        <a class="card qr" href="https://cryptomagicboy.github.io/SberBerezhno/" target="_blank" rel="noopener">
+          <svg viewBox="-3 -3 39 39" shape-rendering="crispEdges" role="img" aria-label="QR-код: cryptomagicboy.github.io/SberBerezhno"><rect x="-3" y="-3" width="39" height="39" fill="#F3F4EE"/><path fill="#0D1210" d="M0 0h7v1h-7zM9 0h1v1h-1zM12 0h6v1h-6zM19 0h3v1h-3zM23 0h1v1h-1zM26 0h7v1h-7zM0 1h1v1h-1zM6 1h1v1h-1zM8 1h1v1h-1zM10 1h1v1h-1zM18 1h1v1h-1zM21 1h1v1h-1zM23 1h1v1h-1zM26 1h1v1h-1zM32 1h1v1h-1zM0 2h1v1h-1zM2 2h3v1h-3zM6 2h1v1h-1zM8 2h4v1h-4zM14 2h1v1h-1zM18 2h1v1h-1zM20 2h1v1h-1zM22 2h1v1h-1zM24 2h1v1h-1zM26 2h1v1h-1zM28 2h3v1h-3zM32 2h1v1h-1zM0 3h1v1h-1zM2 3h3v1h-3zM6 3h1v1h-1zM9 3h6v1h-6zM17 3h3v1h-3zM21 3h2v1h-2zM26 3h1v1h-1zM28 3h3v1h-3zM32 3h1v1h-1zM0 4h1v1h-1zM2 4h3v1h-3zM6 4h1v1h-1zM13 4h1v1h-1zM19 4h1v1h-1zM21 4h1v1h-1zM24 4h1v1h-1zM26 4h1v1h-1zM28 4h3v1h-3zM32 4h1v1h-1zM0 5h1v1h-1zM6 5h1v1h-1zM9 5h2v1h-2zM14 5h2v1h-2zM19 5h1v1h-1zM21 5h1v1h-1zM24 5h1v1h-1zM26 5h1v1h-1zM32 5h1v1h-1zM0 6h7v1h-7zM8 6h1v1h-1zM10 6h1v1h-1zM12 6h1v1h-1zM14 6h1v1h-1zM16 6h1v1h-1zM18 6h1v1h-1zM20 6h1v1h-1zM22 6h1v1h-1zM24 6h1v1h-1zM26 6h7v1h-7zM9 7h1v1h-1zM11 7h4v1h-4zM16 7h4v1h-4zM22 7h3v1h-3zM1 8h3v1h-3zM5 8h2v1h-2zM10 8h3v1h-3zM14 8h1v1h-1zM16 8h2v1h-2zM21 8h1v1h-1zM24 8h1v1h-1zM30 8h2v1h-2zM1 9h1v1h-1zM3 9h2v1h-2zM8 9h1v1h-1zM12 9h1v1h-1zM14 9h2v1h-2zM17 9h5v1h-5zM23 9h1v1h-1zM26 9h2v1h-2zM29 9h4v1h-4zM0 10h2v1h-2zM4 10h5v1h-5zM11 10h4v1h-4zM18 10h1v1h-1zM20 10h2v1h-2zM23 10h1v1h-1zM27 10h3v1h-3zM31 10h2v1h-2zM0 11h1v1h-1zM2 11h4v1h-4zM7 11h1v1h-1zM12 11h2v1h-2zM18 11h1v1h-1zM22 11h1v1h-1zM27 11h1v1h-1zM29 11h1v1h-1zM0 12h3v1h-3zM6 12h1v1h-1zM10 12h2v1h-2zM15 12h1v1h-1zM18 12h1v1h-1zM22 12h1v1h-1zM24 12h2v1h-2zM27 12h3v1h-3zM32 12h1v1h-1zM0 13h2v1h-2zM3 13h3v1h-3zM7 13h1v1h-1zM10 13h1v1h-1zM13 13h3v1h-3zM17 13h1v1h-1zM19 13h1v1h-1zM21 13h1v1h-1zM24 13h1v1h-1zM27 13h1v1h-1zM31 13h1v1h-1zM1 14h1v1h-1zM4 14h4v1h-4zM10 14h2v1h-2zM13 14h2v1h-2zM16 14h1v1h-1zM18 14h2v1h-2zM26 14h1v1h-1zM0 15h3v1h-3zM4 15h2v1h-2zM7 15h2v1h-2zM10 15h1v1h-1zM12 15h1v1h-1zM14 15h1v1h-1zM21 15h6v1h-6zM28 15h3v1h-3zM0 16h7v1h-7zM9 16h4v1h-4zM16 16h2v1h-2zM19 16h8v1h-8zM28 16h3v1h-3zM2 17h1v1h-1zM5 17h1v1h-1zM8 17h1v1h-1zM10 17h1v1h-1zM14 17h1v1h-1zM16 17h1v1h-1zM20 17h1v1h-1zM22 17h5v1h-5zM28 17h2v1h-2zM31 17h2v1h-2zM0 18h2v1h-2zM3 18h1v1h-1zM6 18h4v1h-4zM12 18h1v1h-1zM14 18h5v1h-5zM20 18h3v1h-3zM25 18h4v1h-4zM30 18h2v1h-2zM1 19h1v1h-1zM7 19h1v1h-1zM9 19h4v1h-4zM15 19h2v1h-2zM19 19h2v1h-2zM22 19h2v1h-2zM25 19h1v1h-1zM28 19h1v1h-1zM31 19h1v1h-1zM0 20h2v1h-2zM3 20h1v1h-1zM5 20h5v1h-5zM11 20h1v1h-1zM14 20h1v1h-1zM17 20h1v1h-1zM19 20h1v1h-1zM21 20h1v1h-1zM23 20h1v1h-1zM25 20h1v1h-1zM29 20h2v1h-2zM0 21h1v1h-1zM2 21h1v1h-1zM5 21h1v1h-1zM11 21h2v1h-2zM15 21h1v1h-1zM19 21h5v1h-5zM26 21h2v1h-2zM32 21h1v1h-1zM3 22h4v1h-4zM8 22h7v1h-7zM16 22h1v1h-1zM18 22h1v1h-1zM20 22h1v1h-1zM23 22h2v1h-2zM26 22h1v1h-1zM28 22h2v1h-2zM31 22h2v1h-2zM1 23h1v1h-1zM5 23h1v1h-1zM8 23h3v1h-3zM12 23h3v1h-3zM23 23h1v1h-1zM26 23h1v1h-1zM28 23h2v1h-2zM31 23h2v1h-2zM0 24h1v1h-1zM2 24h3v1h-3zM6 24h5v1h-5zM13 24h1v1h-1zM16 24h4v1h-4zM22 24h1v1h-1zM24 24h6v1h-6zM31 24h2v1h-2zM8 25h6v1h-6zM15 25h2v1h-2zM18 25h2v1h-2zM24 25h1v1h-1zM28 25h2v1h-2zM0 26h7v1h-7zM9 26h7v1h-7zM19 26h6v1h-6zM26 26h1v1h-1zM28 26h1v1h-1zM0 27h1v1h-1zM6 27h1v1h-1zM8 27h2v1h-2zM13 27h1v1h-1zM16 27h2v1h-2zM21 27h1v1h-1zM23 27h2v1h-2zM28 27h3v1h-3zM32 27h1v1h-1zM0 28h1v1h-1zM2 28h3v1h-3zM6 28h1v1h-1zM9 28h2v1h-2zM12 28h1v1h-1zM14 28h1v1h-1zM17 28h1v1h-1zM19 28h1v1h-1zM21 28h8v1h-8zM30 28h2v1h-2zM0 29h1v1h-1zM2 29h3v1h-3zM6 29h1v1h-1zM8 29h4v1h-4zM13 29h3v1h-3zM17 29h1v1h-1zM20 29h1v1h-1zM22 29h1v1h-1zM24 29h1v1h-1zM27 29h1v1h-1zM29 29h1v1h-1zM31 29h2v1h-2zM0 30h1v1h-1zM2 30h3v1h-3zM6 30h1v1h-1zM8 30h2v1h-2zM11 30h1v1h-1zM18 30h1v1h-1zM20 30h1v1h-1zM22 30h1v1h-1zM24 30h4v1h-4zM29 30h2v1h-2zM0 31h1v1h-1zM6 31h1v1h-1zM8 31h1v1h-1zM11 31h1v1h-1zM17 31h1v1h-1zM22 31h1v1h-1zM25 31h1v1h-1zM27 31h2v1h-2zM32 31h1v1h-1zM0 32h7v1h-7zM10 32h1v1h-1zM12 32h2v1h-2zM15 32h2v1h-2zM18 32h2v1h-2zM21 32h1v1h-1zM23 32h1v1h-1zM26 32h1v1h-1zM28 32h1v1h-1zM30 32h1v1h-1z"/></svg>
+          <div class="qr-t"><p class="label lime">Сканируйте</p><b>Попробуйте сами</b><p>Презентация и живой прототип — на вашем телефоне</p><span>cryptomagicboy.github.io/SberBerezhno</span></div>
+        </a>
       </div>
     </div>
   </section>
@@ -522,13 +537,13 @@ body.phone{overflow:auto;padding-inline:16px;padding-block:0}
         <div class="chead"><h3>Калькулятор окупаемости</h3><span class="src">модель на цифрах заявки · сценарная оценка</span></div>
         <div class="ctrls">
           <div class="ctrl"><div class="row"><label for="mau">Активные пользователи в месяц</label><b id="mauV">100 тыс.</b></div><input type="range" id="mau" min="10" max="250" step="5" value="100"></div>
-          <div class="ctrl"><div class="row"><label for="arpu">Доход Сбера на пользователя</label><b id="arpuV">31 ₽</b></div><input type="range" id="arpu" min="20" max="45" step="1" value="31"></div>
+          <div class="ctrl"><div class="row"><label for="arpu">Доход Сбера на пользователя</label><b id="arpuV">32,5 ₽</b></div><input type="range" id="arpu" min="20" max="45" step="0.5" value="32.5"></div>
         </div>
         <svg id="fin" viewBox="0 0 860 330" role="img" aria-label="График: доход растёт с числом пользователей, расходы постоянны — 2,6 млн рублей в месяц; окупаемость в зоне 70–100 тысяч пользователей"></svg>
         <div class="readout">
-          <div class="ro"><span>Доход в месяц</span><b id="roRev">3,1 млн ₽</b></div>
+          <div class="ro"><span>Доход в месяц</span><b id="roRev">3,3 млн ₽</b></div>
           <div class="ro"><span>Расходы в месяц</span><b>2,6 млн ₽</b></div>
-          <div class="ro pos" id="roResBox"><span>Результат</span><b id="roRes">+0,5 млн ₽</b></div>
+          <div class="ro pos" id="roResBox"><span>Результат</span><b id="roRes">+0,7 млн ₽</b></div>
           <div class="ro"><span>Экономия клиентов</span><b id="roCli">20 млн ₽</b></div>
         </div>
       </div>
@@ -632,7 +647,7 @@ body.phone{overflow:auto;padding-inline:16px;padding-block:0}
   <div class="seg"><span class="num">B</span><div><b>Коплю на цель · 18–30 лет</b><p>Активные онлайн-платежи, небольшие суммы</p><p class="pain">Боль: крупные переводы в копилку психологически тяжелы</p><span class="mod">Безопасно отложить · Boost</span></div></div>
   <div class="seg"><span class="num">C</span><div><b>Рациональный плательщик · 25–55 лет</b><p>Несколько регулярных сервисов и тарифов</p><p class="pain">Боль: переплачивает за старые тарифы</p><span class="mod">AI регулярных расходов</span></div></div>
   <div class="seg"><span class="num">D</span><div><b>Охотник за выгодой</b><p>Высокая чувствительность к цене и промо</p><p class="pain">Боль: тратит часы на акции и промокоды</p><span class="mod">Радар · Fresh Rescue · Умная оплата</span></div></div>
-  <div class="seg"><span class="num">B2B</span><div><b>Партнёры: ритейл, доставка, телеком, страховые</b><p class="pain">Боль: массовая скидка съедает маржу и не показывает эффект</p><span class="mod">API, Fresh Rescue, Boost — оплата за результат</span></div></div>
+  <div class="seg"><span class="num sm">B2B</span><div><b>Партнёры: ритейл, доставка, телеком, страховые</b><p class="pain">Боль: массовая скидка съедает маржу и не показывает эффект</p><span class="mod">API, Fresh Rescue, Boost — оплата за результат</span></div></div>
 </template>
 
 <template id="t-compare">
@@ -690,10 +705,10 @@ body.phone{overflow:auto;padding-inline:16px;padding-block:0}
     </g>
   </svg>
   <p class="label">4 источника дохода Сбера · клиент не платит</p>
-  <div class="stream"><span class="num">01</span><div><b>Партнёрские бюджеты</b><p>merchant-funded предложения, Boost и success fee за подтверждённое действие</p></div></div>
-  <div class="stream"><span class="num">02</span><div><b>SberPay и эквайринг</b><p>рост оборота внутри платёжного контура</p></div></div>
-  <div class="stream"><span class="num">03</span><div><b>Остатки и инвестиции</b><p>сэкономленное остаётся на накопительных продуктах Сбера</p></div></div>
-  <div class="stream"><span class="num">04</span><div><b>White-label API</b><p>модуль для ритейла, маркетплейсов, телекома и страховых</p></div></div>
+  <div class="stream"><span class="num">01</span><div><b>B2B / API-лицензия</b><p>партнёры платят за использование модулей: ритейл, маркетплейсы, телеком, страховые</p></div></div>
+  <div class="stream"><span class="num">02</span><div><b>Success fee</b><p>только за подтверждённое действие: покупку, переход на тариф, Fresh Rescue, Boost</p></div></div>
+  <div class="stream"><span class="num">03</span><div><b>Платёжный эффект</b><p>больше операций внутри SberPay, карт и эквайринга</p></div></div>
+  <div class="stream"><span class="num">04</span><div><b>Финансовый эффект</b><p>часть подтверждённой экономии остаётся на накопительных продуктах Сбера</p></div></div>
 </template>
 
 <template id="t-market">
@@ -764,7 +779,10 @@ body.phone{overflow:auto;padding-inline:16px;padding-block:0}
   <p class="formula">2,6 млн ÷ 100 тыс. = <span>26 ₽</span> · 2,6 млн ÷ 70 тыс. ≈ <span>37 ₽</span></p>
   <p class="note">Столько дохода из всех источников нужно на одного активного пользователя в месяц. Сам клиент экономит от 200 ₽ — в 5–8 раз больше.</p>
   <p class="label">После масштабирования</p>
-  <p class="formula"><span>+2–4 млн ₽</span> в месяц сверх операционных затрат</p>
+  <p class="formula">150 тыс. MAU + 5 B2B-партнёров</p>
+  <p class="formula">5 × 500 тыс. + 45 тыс. действий × 40 ₽ + 0,8–1,5 млн = <span>5,1–5,8 млн ₽</span></p>
+  <p class="formula">5,1–5,8 млн − расходы 3,0–3,5 млн = <span>+1,6–2,8 млн ₽</span> в месяц</p>
+  <p class="note">45 тыс. действий = 150 тыс. MAU × 30%. Слагаемые: B2B-выручка 2,5 млн, success fee 1,8 млн, платёжный и финансовый эффект 0,8–1,5 млн ₽.</p>
   <p class="note">Все показатели выручки, расходов, конверсий и SOM — сценарные оценки команды для пилота, не прогноз Сбера. Они проверяются A/B-тестами и фактической воронкой.</p>
 </template>
 
@@ -933,6 +951,7 @@ $('#share').addEventListener('input',e=>{st.share=+e.target.value;calc();});
 const fin=$('#fin');
 const FX={x0:70,x1:840,y0:286,y1:14,maxM:250000,maxV:8e6};
 const sx=m=>FX.x0+(m/FX.maxM)*(FX.x1-FX.x0), sy=v=>FX.y0-(v/FX.maxV)*(FX.y0-FX.y1);
+const rubs=v=>v.toLocaleString('ru-RU',{maximumFractionDigits:1})+' ₽';
 const mln=v=>(v/1e6).toLocaleString('ru-RU',{minimumFractionDigits:1,maximumFractionDigits:1});
 function drawFin(){
  const arpu=+$('#arpu').value, mau=+$('#mau').value*1000, COST=2.6e6;
@@ -955,7 +974,7 @@ function drawFin(){
  // revenue
  el('line',{x1:sx(0),y1:sy(0),x2:sx(FX.maxM),y2:sy(FX.maxM*arpu),stroke:'#D4FF3A','stroke-width':3.5,'stroke-linecap':'round'},g);
  const endM=Math.min(FX.maxM,FX.maxV/arpu*0.94);
- T(sx(endM)-8,sy(endM*arpu)-12,'доход при '+arpu+' ₽ на пользователя',{'text-anchor':'end',fill:'#F3F4EE','font-weight':700});
+ T(sx(endM)-8,sy(endM*arpu)-12,'доход при '+rubs(arpu)+' на пользователя',{'text-anchor':'end',fill:'#F3F4EE','font-weight':700});
  // breakeven
  const be=COST/arpu;
  if(be<=FX.maxM){el('circle',{cx:sx(be),cy:sy(COST),r:8,fill:'#0D1210',stroke:'#D4FF3A','stroke-width':3},fin);
@@ -974,7 +993,7 @@ function drawFin(){
    const rv=m*arpu,rs=rv-COST;showTip(e,`<b>${mln(rv)} млн ₽ доход</b>${fmt(m/1000)} тыс. пользователей<br>расходы 2,6 млн ₽ · результат ${rs>=0?'+':'−'}${mln(Math.abs(rs))} млн ₽<br><span>клиенты сэкономят ≥${mln(m*200)} млн ₽</span>`);});
  hit.addEventListener('pointerleave',()=>{cross.setAttribute('stroke-opacity','0');hideTip();});
  // readout
- $('#mauV').textContent=fmt(mau/1000)+' тыс.';$('#arpuV').textContent=arpu+' ₽';
+ $('#mauV').textContent=fmt(mau/1000)+' тыс.';$('#arpuV').textContent=rubs(arpu);
  $('#roRev').textContent=mln(mau*arpu)+' млн ₽';
  $('#roRes').textContent=(res>=0?'+':'−')+mln(Math.abs(res))+' млн ₽';
  $('#roResBox').className='ro '+(res>=0?'pos':'neg');
