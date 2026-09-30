@@ -288,6 +288,30 @@ input[type=range]{flex:1;accent-color:var(--lime);height:26px}
 .note{font-size:15px;color:var(--dim);line-height:1.45}
 .stream{display:grid;grid-template-columns:50px 1fr;gap:10px;padding:12px 0;border-top:1px solid var(--line)}
 .stream .num{font-size:20px;color:var(--lime)} .stream b{font-size:18px} .stream p{font-size:15px;color:var(--muted)}
+.scen{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.sc{border-radius:18px;background:var(--ink3);border:1px solid transparent;padding:18px 20px;display:flex;flex-direction:column;gap:10px}
+.sc.hi{background:var(--lime2);border-color:var(--lime3)}
+.sc .label{font-size:13px}
+.sc .num{font-size:38px}
+.sc.hi .num{color:var(--lime)}
+.sc p{font-size:15px;color:var(--soft);line-height:1.35}
+.mix{height:12px;border-radius:4px;display:flex;gap:2px;overflow:hidden;margin-top:4px}
+.mix i{display:block;height:100%;min-width:3px}
+.m1{background:var(--lime)} .m2{background:rgba(212,255,58,.6)} .m3{background:rgba(212,255,58,.34)} .m4{background:rgba(212,255,58,.18)}
+.rev{width:100%;border-collapse:collapse}
+.rev th{font-size:13px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);text-align:left;vertical-align:bottom;padding:0 0 10px;line-height:1.3}
+.rev td{padding:14px 0;border-top:1px solid var(--line);vertical-align:top}
+.rev th+th,.rev td+td{padding-left:20px;text-align:right}
+.rev td+td small{white-space:nowrap}
+.rev th.hi{color:var(--lime)}
+.rev .rn{display:grid;grid-template-columns:14px 1fr;gap:12px}
+.rev .rn i{width:14px;height:14px;border-radius:4px;margin-top:4px}
+.rev b{font-size:18px}
+.rev small{display:block;font-size:14px;color:var(--muted);line-height:1.35;margin-top:3px}
+.rev .v{font-family:var(--disp);font-size:21px;font-weight:600;white-space:nowrap;font-variant-numeric:tabular-nums}
+.rev td.hi .v{color:var(--lime)}
+.rev tr.tot td{border-top:2px solid var(--line2);padding-top:16px}
+.rev tr.tot .v{font-size:26px;color:var(--lime)}
 
 
 .proto{position:absolute;inset:40px;z-index:30;background:#0B100E;border:1px solid var(--line2);border-radius:22px;display:flex;flex-direction:column;overflow:hidden;opacity:0;visibility:hidden;transition:opacity .3s,visibility 0s .3s}
@@ -326,6 +350,15 @@ body.phone{overflow:auto;padding-inline:16px;padding-block:0}
 .phone .mapchip{font-size:13px;padding:6px 10px}
 .phone .client{width:110px;height:110px;font-size:17px}
 .phone .maptitle{position:static;margin-top:8px}
+.phone .scen{grid-template-columns:1fr}
+.phone .rev,.phone .rev tbody{display:block}
+.phone .rev tr{display:grid;grid-template-columns:1fr 1fr;column-gap:16px}
+.phone .rev th:first-child{display:none}
+.phone .rev td:first-child{grid-column:1/-1}
+.phone .rev th+th,.phone .rev td+td{padding-left:0}
+.phone .rev td+td{border-top:0;padding-top:0}
+.phone .rev td+td small{white-space:normal}
+.phone .rev .v{font-size:18px} .phone .rev tr.tot .v{font-size:21px}
 
 @media (prefers-reduced-motion: reduce){
   *{transition:none!important;animation:none!important}
@@ -380,7 +413,7 @@ body.phone{overflow:auto;padding-inline:16px;padding-block:0}
   </section>
 
   <!-- S1 TASK & GOAL -->
-  <section class="screen" data-block="1" data-steps="0">
+  <section class="screen" data-block="1" data-steps="0" data-drawers="segments:Сегменты аудитории">
     <header class="sh"><p class="eyebrow">01 · Задача и цель</p><h2 class="h2">Меньше тратить, больше копить</h2></header>
     <div class="cols s1">
       <div class="card task">
@@ -406,7 +439,7 @@ body.phone{overflow:auto;padding-inline:16px;padding-block:0}
   </section>
 
   <!-- S2 PROBLEM -->
-  <section class="screen" data-block="2" data-steps="2" data-drawers="research:Исследования и источники|segments:Сегменты аудитории">
+  <section class="screen" data-block="2" data-steps="2" data-drawers="research:Исследования и источники|compare:Сравнение с 7 аналогами|market:Рынок и масштаб">
     <header class="sh"><p class="eyebrow">02 · Доказательство проблемы</p><h2 class="h2">Выгода есть, но она разбросана и теряется</h2></header>
     <div class="cols s2">
       <div class="ev">
@@ -428,7 +461,7 @@ body.phone{overflow:auto;padding-inline:16px;padding-block:0}
   </section>
 
   <!-- S3 SOLUTION -->
-  <section class="screen" data-block="3" data-steps="4" data-drawers="compare:Сравнение с 7 аналогами|flow:Кто за что отвечает">
+  <section class="screen" data-block="3" data-steps="4" data-drawers="flow:Кто за что отвечает">
     <header class="sh"><p class="eyebrow">03 · Идея</p><h2 class="h2">Один AI-слой на весь круг покупки</h2></header>
     <div class="cols s3">
       <div class="ringwrap">
@@ -482,7 +515,7 @@ body.phone{overflow:auto;padding-inline:16px;padding-block:0}
   </section>
 
   <!-- S5 EFFECT -->
-  <section class="screen" data-block="4" data-steps="0" data-drawers="model:Бизнес-модель|market:Рынок и масштаб|calc:Расчёт и допущения">
+  <section class="screen" data-block="4" data-steps="0" data-drawers="model:Бизнес-модель|calc:Расчёт и допущения">
     <header class="sh"><p class="eyebrow">04 · Проверка и эффект</p><h2 class="h2">Клиент не платит — модель окупается</h2></header>
     <div class="cols s5">
       <div class="card chartcard">
@@ -689,6 +722,40 @@ body.phone{overflow:auto;padding-inline:16px;padding-block:0}
 </template>
 
 <template id="t-calc">
+  <p class="label">Доход Сбера по источникам · в месяц</p>
+  <div class="scen">
+    <div class="sc">
+      <p class="label">Базовый сценарий · 80 тыс. MAU</p>
+      <span class="num">≈ 2,6 млн ₽</span>
+      <p>покрывает расходы 2,6 млн ₽ в месяц</p>
+      <div class="mix" role="img" aria-label="Структура дохода: B2B-лицензия 62%, success fee 27%, платёжный эффект 8%, финансовый эффект 4%"><i class="m1" style="width:61.5%"></i><i class="m2" style="width:26.9%"></i><i class="m3" style="width:7.7%"></i><i class="m4" style="width:3.9%"></i></div>
+    </div>
+    <div class="sc hi">
+      <p class="label lime">Вся база СБОЛ · 84,7 млн</p>
+      <span class="num">≈ 1,06 млрд ₽</span>
+      <p>сумма четырёх эффектов при масштабе</p>
+      <div class="mix" role="img" aria-label="Структура дохода: success fee 70%, платёжный эффект 20%, финансовый эффект 10%, B2B-лицензия меньше 1%"><i class="m1" style="width:.15%"></i><i class="m2" style="width:69.9%"></i><i class="m3" style="width:20%"></i><i class="m4" style="width:10%"></i></div>
+    </div>
+  </div>
+  <table class="rev">
+    <tr><th>Источник и логика</th><th>80 тыс. MAU</th><th class="hi">84,7 млн</th></tr>
+    <tr><td><div class="rn"><i class="m1"></i><div><b>B2B-лицензия / API</b><small>Партнёры платят за использование технологии</small></div></div></td>
+      <td><span class="v">1,6 млн ₽</span><small>4 партнёра × 400 тыс. ₽</small></td>
+      <td class="hi"><span class="v">1,6 млн ₽</span><small>те же 4 партнёра</small></td></tr>
+    <tr><td><div class="rn"><i class="m2"></i><div><b>Success fee</b><small>Партнёр платит только за реально совершённое полезное действие</small></div></div></td>
+      <td><span class="v">700 тыс. ₽</span><small>80 тыс. × 25% действий × 35 ₽</small></td>
+      <td class="hi"><span class="v">741,1 млн ₽</span><small>84,7 млн × 25% × 35 ₽</small></td></tr>
+    <tr><td><div class="rn"><i class="m3"></i><div><b>Платёжный эффект</b><small>Больше покупок проходит через SberPay, карты и эквайринг</small></div></div></td>
+      <td><span class="v">≈ 200 тыс. ₽</span><small>модельная оценка</small></td>
+      <td class="hi"><span class="v">≈ 211,8 млн ₽</span><small>пропорционально MAU</small></td></tr>
+    <tr><td><div class="rn"><i class="m4"></i><div><b>Финансовый эффект</b><small>Часть сэкономленного остаётся на накопительных продуктах Сбера</small></div></div></td>
+      <td><span class="v">≈ 100 тыс. ₽</span><small>модельная оценка</small></td>
+      <td class="hi"><span class="v">≈ 105,9 млн ₽</span><small>пропорционально MAU</small></td></tr>
+    <tr class="tot"><td><b>Итого</b><small>сумма четырёх эффектов</small></td>
+      <td><span class="v">≈ 2,6 млн ₽</span></td>
+      <td class="hi"><span class="v">≈ 1,06 млрд ₽</span></td></tr>
+  </table>
+  <p class="note">При 84,7 млн платёжный и финансовый эффекты масштабируются пропорционально от значений при 80 тыс. MAU; B2B-лицензия от числа пользователей не зависит.</p>
   <p class="label">Расходы</p>
   <p class="formula"><span>2,6 млн ₽</span> в месяц = 31,2 млн ₽ в год</p>
   <p class="note">Команда продукта, разработка, data/AI, инфраструктура, безопасность, партнёрские операции.</p>
@@ -968,7 +1035,7 @@ $$('.blk').forEach(b=>b.addEventListener('click',()=>go(+b.dataset.go)));
 const drawer=$('#drawer'),scrim=$('#scrim');
 function openDrawer(id,title){const tpl=document.getElementById('t-'+id);if(!tpl)return;
  $('#dtitle').textContent=title;const body=$('#dbody');body.innerHTML='';body.appendChild(tpl.content.cloneNode(true));
- drawer.classList.toggle('wide',id==='compare');drawer.classList.add('on');scrim.classList.add('on');drawer.setAttribute('aria-hidden','false');$('#dclose').focus();}
+ drawer.classList.toggle('wide',id==='compare'||id==='calc');drawer.classList.add('on');scrim.classList.add('on');drawer.setAttribute('aria-hidden','false');$('#dclose').focus();}
 function closeDrawer(){drawer.classList.remove('on');scrim.classList.remove('on');drawer.setAttribute('aria-hidden','true');}
 $('#dclose').addEventListener('click',closeDrawer);scrim.addEventListener('click',closeDrawer);
 /* phone: inline drawer buttons */
